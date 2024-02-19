@@ -1,33 +1,24 @@
-const navigation = [
-  { name: "Dashboard", href: "#", current: false },
-  { name: "Team", href: "#", current: true },
-  { name: "Projects", href: "#", current: false },
-  { name: "Calendar", href: "#", current: false },
-  { name: "Documents", href: "#", current: false },
-  { name: "Reports", href: "#", current: false },
-];
+import { prisma } from "@/db/prisma-client";
+import { ActiveLink } from "@/components/active-link";
+import { notFound } from "next/navigation";
 
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(" ");
-}
-
-export function Navigation() {
+export async function Navigation() {
+  const user = await prisma.user.findUnique({
+    where: { id: 2 },
+    include: {
+      posts: true,
+    },
+  });
+  if (!user) {
+    notFound();
+  }
+  const { posts } = user;
   return (
     <nav className="flex flex-1 flex-col" aria-label="Sidebar">
       <ul role="list" className="-mx-2 space-y-1">
-        {navigation.map((item) => (
-          <li key={item.name}>
-            <a
-              href={item.href}
-              className={classNames(
-                item.current
-                  ? "text-indigo-600"
-                  : "text-gray-400 hover:text-indigo-600",
-                "group flex gap-x-3 rounded-md p-2 pl-3 text-sm leading-6 font-semibold",
-              )}
-            >
-              {item.name}
-            </a>
+        {posts.map((item) => (
+          <li key={item.id}>
+            <ActiveLink href={`/post/${item.id}`}>{item.title}</ActiveLink>
           </li>
         ))}
       </ul>
