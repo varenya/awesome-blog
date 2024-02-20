@@ -6,13 +6,15 @@ import { cookies } from "next/headers";
 
 export async function createNewPost(formData: FormData) {
   try {
+    const cookiesStore = cookies();
     const title = formData.get("title");
     const content = (formData.get("content") as string) || undefined;
+    const userId = cookiesStore.get("userId") || { value: "1" };
     if (typeof title !== "string") {
       return { error: "title is not present" };
     }
 
-    await createBlogPost({ title, content });
+    await createBlogPost({ title, content, userId: parseInt(userId.value) });
     revalidatePath("/");
     return { message: "blog successfully created" };
   } catch (e) {

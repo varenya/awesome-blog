@@ -3,12 +3,14 @@ import { prisma } from "@/db/prisma-client";
 export async function createBlogPost({
   title,
   content,
+  userId,
 }: {
   title: string;
   content?: string;
+  userId: number;
 }) {
   await prisma.post.create({
-    data: { title, content, author: { connect: { id: 2 } } },
+    data: { title, content, author: { connect: { id: userId } } },
   });
 }
 
