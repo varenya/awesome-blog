@@ -19,7 +19,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={"bg-gray-100 "}>
+      <body className={`bg-gray-100 ${inter.className}`}>
         <div className="flex p-4 bg-white mb-10">
           <div className="ml-auto">
             <Users />
@@ -31,12 +31,14 @@ export default function RootLayout({
               My Very Awesome Blog Site!
             </h1>
           </header>
-          <div className={"container grid grid-cols-2 gap-8  bg-white"}>
-            <div className=" px-12 py-8 rounded-lg shadow-lg ">{children}</div>
-            <div className=" px-12 py-8 ">
+          <div className={"container grid grid-cols-3 gap-8"}>
+            <div className="px-12 py-8 bg-white cols-span-1">
               <Suspense fallback={"loading.."}>
                 <Navigation />
               </Suspense>
+            </div>
+            <div className="px-12 py-8 rounded-lg shadow-lg bg-white col-span-2">
+              {children}
             </div>
           </div>
         </main>

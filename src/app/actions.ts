@@ -3,23 +3,24 @@
 import { createBlogPost } from "@/db/crud-post";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
+import { redirect } from "next/navigation";
 
 export async function createNewPost(formData: FormData) {
-  try {
-    const cookiesStore = cookies();
-    const title = formData.get("title");
-    const content = (formData.get("content") as string) || undefined;
-    const userId = cookiesStore.get("userId") || { value: "1" };
-    if (typeof title !== "string") {
-      return { error: "title is not present" };
-    }
-
-    await createBlogPost({ title, content, userId: parseInt(userId.value) });
-    revalidatePath("/");
-    return { message: "blog successfully created" };
-  } catch (e) {
-    return { message: "error creating a blog post" };
+  const cookiesStore = cookies();
+  const title = formData.get("title");
+  const content = (formData.get("content") as string) || undefined;
+  const userId = cookiesStore.get("userId") || { value: "1" };
+  if (typeof title !== "string") {
+    return { error: "title is not present" };
   }
+
+  const post = await createBlogPost({
+    title,
+    content,
+    userId: parseInt(userId.value),
+  });
+  revalidatePath("/");
+  redirect(`/post/${post.id}`);
 }
 
 export async function setUser(formData: FormData) {
@@ -32,4 +33,5 @@ export async function setUser(formData: FormData) {
   } catch (e) {
     return { message: "error setting the user" };
   }
+  redirect("/");
 }

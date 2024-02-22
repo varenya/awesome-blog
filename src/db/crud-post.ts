@@ -9,9 +9,10 @@ export async function createBlogPost({
   content?: string;
   userId: number;
 }) {
-  await prisma.post.create({
+  const post = await prisma.post.create({
     data: { title, content, author: { connect: { id: userId } } },
   });
+  return post;
 }
 
 export async function getUser({ id }: { id: string }) {
