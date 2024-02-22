@@ -1,6 +1,6 @@
 "use client";
 import React from "react";
-import { setUser } from "@/app/actions";
+import { setUser } from "../app/actions";
 
 function SelectUser({
   users,

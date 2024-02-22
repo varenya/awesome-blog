@@ -1,4 +1,4 @@
-import { prisma } from "@/db/prisma-client";
+import { prisma } from "./prisma-client";
 
 export async function createBlogPost({
   title,

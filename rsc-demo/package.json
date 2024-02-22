@@ -1,0 +1,26 @@
+{
+  "name": "rsc-demo",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "db": "workspace:*",
+    "@headlessui/react": "^1.7.18",
+    "@heroicons/react": "^2.1.1",
+    "@types/react": "^18.2.56",
+    "@types/react-dom": "^18.0.0",
+    "classnames": "^2.5.1",
+    "next": "14.1.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}

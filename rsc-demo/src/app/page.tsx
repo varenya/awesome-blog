@@ -1,4 +1,4 @@
-import { createNewPost } from "@/app/actions";
+import { createNewPost } from "./actions";
 export default function Home() {
   return (
     <div className={"mx-auto flex-1"}>

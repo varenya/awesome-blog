@@ -1,5 +1,5 @@
-import { prisma } from "@/db/prisma-client";
-import { ActiveLink } from "@/components/active-link";
+import { prisma } from "../../../db/prisma-client";
+import { ActiveLink } from "./active-link";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 

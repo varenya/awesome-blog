@@ -1,6 +1,6 @@
 "use server";
 
-import { createBlogPost } from "@/db/crud-post";
+import { createBlogPost } from "db";
 import { revalidatePath } from "next/cache";
 import { cookies } from "next/headers";
 import { redirect } from "next/navigation";
