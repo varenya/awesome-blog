@@ -1,11 +1,10 @@
-import { prisma } from "../../../../../db/prisma-client";
+import { prisma } from "db";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";
 
 export default async function Post({ params }: { params: { id: string } }) {
   const cookieStore = cookies();
   const userId = cookieStore.get("userId") || { value: "1" };
-  console.log({ userId });
   const post = await prisma.post.findUnique({
     where: { id: parseInt(params.id, 10), authorId: parseInt(userId.value) },
   });

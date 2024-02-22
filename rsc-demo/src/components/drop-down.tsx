@@ -6,7 +6,6 @@ export function DropDown({
 }: {
   users: { id: number; name: string | null }[];
 }) {
-  console.log({ users });
   return (
     <Listbox defaultValue={users[0]} name={"userId"}>
       <Listbox.Button

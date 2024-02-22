@@ -1,4 +1,4 @@
-import { prisma } from "../../../db/prisma-client";
+import { prisma } from "db";
 import { ActiveLink } from "./active-link";
 import { notFound } from "next/navigation";
 import { cookies } from "next/headers";

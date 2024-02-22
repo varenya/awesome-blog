@@ -1,5 +1,4 @@
-import { prisma } from "../../../db/prisma-client";
-import { setUser } from "../app/actions";
+import { prisma } from "db";
 import React from "react";
 import { SelectUser } from "./select-user";
 
