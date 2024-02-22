@@ -24,11 +24,11 @@ export async function Navigation() {
       <ul role="list" className="m-0 ">
         {posts.map((item) => (
           <li key={item.id} className="mb-6">
-            <h3 className="text-xl font-semibold text-rose-600  text-gray-900 font-nunito">
-              {item.title}
-            </h3>
-            <p>{item.content}</p>
-            <ActiveLink href={`/post/${item.id}`}>Read more</ActiveLink>
+            <ActiveLink href={`/post/${item.id}`}>
+              <h3 className="text-xl font-semibold text-rose-600 font-nunito underline underline-offset-2">
+                {item.title}
+              </h3>
+            </ActiveLink>
           </li>
         ))}
       </ul>
